@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ExpenseTracking.Core\ExpenseTracking.Core.csproj" />
     <ProjectReference Include="..\ExpenseTracking.Infrastructure\ExpenseTracking.Infrastructure.csproj" />
   </ItemGroup>
 
