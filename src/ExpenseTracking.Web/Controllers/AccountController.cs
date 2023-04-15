@@ -27,6 +27,7 @@
         {
             if (User.Identity!.IsAuthenticated)
             {
+                // Have to think about it !!
                 return RedirectToAction(Index, Home);
             }
 
@@ -71,6 +72,7 @@
         {
             if (User.Identity!.IsAuthenticated)
             {
+                // Have to think about it !!
                 return RedirectToAction(Index, Home);
             }
 

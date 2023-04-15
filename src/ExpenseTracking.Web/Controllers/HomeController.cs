@@ -1,4 +1,5 @@
 ﻿using ExpenseTracking.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -13,6 +14,7 @@ namespace ExpenseTracking.Web.Controllers
             _logger = logger;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
