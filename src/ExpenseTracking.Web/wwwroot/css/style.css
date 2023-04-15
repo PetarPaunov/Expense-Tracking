@@ -2,7 +2,7 @@
 @import url('./landing-page.css');
 
 :root {
-    --clr-darkblue-secondary: #1a232c;
+    --clr-darkblue-secondary: #041121;
     --clr-darkblue-primary: #12171d;
     --clr-grey-primary: #a8a59c;
 }
@@ -44,5 +44,5 @@
 }
 
 .nav .nav-list .nav-item:hover {
-    box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 25px -5px rgba(255,255,255,1);
 }

@@ -32,7 +32,10 @@ html:focus-within {
 }
 
 html {
-    background-color: var(--clr-darkblue-primary);
+    background-image: url('../images/Langing-page.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
 }
 
 /* Set core body defaults */
