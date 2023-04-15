@@ -1,6 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-/* Box sizing rules */
+﻿/* Box sizing rules */
 *,
 *::before,
 *::after {
@@ -31,6 +29,10 @@ ol[role='list'] {
 /* Set core root defaults */
 html:focus-within {
     scroll-behavior: smooth;
+}
+
+html {
+    background-color: var(--clr-darkblue-primary);
 }
 
 /* Set core body defaults */
