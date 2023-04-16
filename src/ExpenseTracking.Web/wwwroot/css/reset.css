@@ -33,7 +33,7 @@ html:focus-within {
 
 html {
     background-image: url('../images/Langing-page.png');
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: bottom;
     background-size: cover;
 }

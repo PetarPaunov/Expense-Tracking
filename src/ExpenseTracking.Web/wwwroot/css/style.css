@@ -1,10 +1,15 @@
 ﻿@import url('./reset.css');
 @import url('./landing-page.css');
+@import url('./home-page.css');
 
 :root {
     --clr-darkblue-secondary: #041121;
     --clr-darkblue-primary: #12171d;
-    --clr-grey-primary: #a8a59c;
+    --clr-grey-primary: #c0c0c0;
+    --clr-darckpurple-primary: #6b5b95;
+    --clr-yellow-primary: #f1e1c1;
+    --clr-royalblue-primary: #0f4c81;
+    --clr-golden-primary: #1e3263;
 }
 
 .nav {
@@ -46,4 +51,15 @@
 
 .nav .nav-list .nav-item:hover {
     box-shadow: 0px 0px 25px -5px rgba(255,255,255,1);
+}
+
+@media (max-width: 650px) {
+    .nav {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+        .nav .nav-list {
+            padding: 0px;
+        }
 }
