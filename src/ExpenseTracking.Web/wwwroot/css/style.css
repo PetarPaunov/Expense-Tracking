@@ -1,6 +1,7 @@
 ﻿@import url('./reset.css');
 @import url('./landing-page.css');
 @import url('./home-page.css');
+@import url('./login-register.css');
 
 :root {
     --clr-darkblue-secondary: #041121;
@@ -10,6 +11,7 @@
     --clr-yellow-primary: #f1e1c1;
     --clr-royalblue-primary: #0f4c81;
     --clr-golden-primary: #1e3263;
+    --clr-dangerred-primary: rgb(243, 64, 64);
 }
 
 .nav {
