@@ -13,6 +13,9 @@
     padding: 50px 35px;
 }
 
+.login-register.register{
+}
+
 .login-register * {
     font-family: 'Poppins',sans-serif;
     color: #ffffff;
@@ -33,6 +36,10 @@
     margin-top: 30px;
     font-size: 16px;
     font-weight: 500;
+}
+
+.login-register.register .label {
+    margin-top: 15px;
 }
 
 .login-register .input {
@@ -63,8 +70,16 @@
     cursor: pointer;
 }
 
+.login-register.register .btn.submit {
+    margin-top: 25px;
+}
+
 .login-register .acc-or-log {
     margin-top: 2rem;
+}
+
+.login-register.register .acc-or-log {
+    margin-top: .8rem;
 }
 
 .invalid {
@@ -76,6 +91,18 @@
 
 .invalid span{
     color: var(--clr-dangerred-primary);
+}
+
+.login-register.register .invalid.first {
+    top: 124px;
+}
+
+.login-register.register .invalid.second {
+    top: 226px;
+}
+
+.login-register.register .invalid.third {
+    top: 327px;
 }
 
 .invalid.first {

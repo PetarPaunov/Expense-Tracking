@@ -1,0 +1,44 @@
+﻿@using ExpenseTracking.Core.Models.AccountViewModels
+
+@model RegisterViewModel
+
+<form method="post" class="login-register register">
+    <h3 class="title">Register Here</h3>
+
+    <div class="invalid" asp-validation-summary="ModelOnly"></div>
+
+    <label asp-for="@Model.UserName" class="label" for="username">Username</label>
+    <span asp-validation-for="@Model.UserName" class="invalid first"></span>
+    <input asp-for="@Model.UserName"
+           class="input"
+           type="text"
+           placeholder="Username"
+           id="username" />
+
+    <label asp-for="@Model.Password" class="label" for="password">Password</label>
+    <span asp-validation-for="@Model.Password" class="invalid second"></span>
+    <input asp-for="@Model.Password"
+           class="input"
+           type="password"
+           placeholder="Password"
+           id="password" />
+
+
+    <label asp-for="@Model.ConfirmPassword" class="label" for="password">Confirm Password</label>
+    <span asp-validation-for="@Model.ConfirmPassword" class="invalid third"></span>
+    <input asp-for="@Model.ConfirmPassword"
+           class="input"
+           type="password"
+           placeholder="Confirm Password"
+           id="confirm-password" />
+
+    <button class="btn submit">Register</button>
+
+    <div class="acc-or-log">
+        <a asp-action="Login" asp-controller="Account" class="navigate-to">Log in to your account!</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

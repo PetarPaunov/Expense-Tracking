@@ -3,15 +3,16 @@
     using System.ComponentModel.DataAnnotations;
 
     using static ExpenseTracking.Core.Contracts.AccountConstants;
+    using static ExpenseTracking.Core.Contracts.ErrorConstants;
 
     public class RegisterViewModel
     {
         [Required]
-        [StringLength(UserNameMaxLength, MinimumLength = UserNameMinLength)]
+        [StringLength(UserNameMaxLength, MinimumLength = UserNameMinLength, ErrorMessage = UserNameErrorMessage)]
         public string UserName { get; set; } = null!;
 
         [Required]
-        [StringLength(PasswordMaxLength, MinimumLength = PasswordMinLength)]
+        [StringLength(PasswordMaxLength, MinimumLength = PasswordMinLength, ErrorMessage = PasswordErrorMessage)]
         [DataType(DataType.Password)]
         public string Password { get; set; } = null!;
 
