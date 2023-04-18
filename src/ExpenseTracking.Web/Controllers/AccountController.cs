@@ -8,17 +8,21 @@
 
     using static ExpenseTracking.Web.Constants.RedirectConstants;
     using static ExpenseTracking.Core.Contracts.ErrorConstants;
+    using static ExpenseTracking.Core.Contracts.RoleConstants;
 
     public class AccountController : BaseController
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly RoleManager<IdentityRole> roleManager;
 
         public AccountController(UserManager<ApplicationUser> userManager, 
-                                 SignInManager<ApplicationUser> signInManager)
+                                 SignInManager<ApplicationUser> signInManager,
+                                 RoleManager<IdentityRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.roleManager = roleManager;
         }
 
         [HttpGet]
@@ -55,6 +59,15 @@
 
             if (result.Succeeded)
             {
+                var roleExists = await this.roleManager.RoleExistsAsync(UserRole);
+
+                if (!roleExists)
+                {
+                    await this.roleManager.CreateAsync(new IdentityRole(UserRole));
+                }
+
+                await this.userManager.AddToRoleAsync(user, UserRole);
+
                 return RedirectToAction(nameof(Login));
             }
 
