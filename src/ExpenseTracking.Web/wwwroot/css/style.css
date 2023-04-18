@@ -2,6 +2,7 @@
 @import url('./landing-page.css');
 @import url('./home-page.css');
 @import url('./login-register.css');
+@import url('./logged-user.css');
 
 :root {
     --clr-darkblue-secondary: #041121;

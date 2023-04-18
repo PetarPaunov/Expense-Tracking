@@ -1,0 +1,69 @@
+html {
+    background-image: url('../images/Langing-page.png');
+    background-repeat: repeat;
+    background-position: bottom;
+    background-size: cover;
+}
+
+.logged-main {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.logged-nav,
+.logged-container {
+    height: 90vh;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+.logged-nav {
+    width: 17%;
+    margin-left: 1rem;
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+}
+
+.logged-container {
+    width: 79%;
+}
+
+.logged-nav-logo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1rem auto 1.5rem auto;
+    width: 80%;
+    color: white;
+}
+
+.user-name {
+    color: white;
+    width: 100%;
+    margin-left: 1rem;
+    margin-bottom: 3rem;
+    font-weight: bold;
+}
+
+.logged-nav-list {
+    padding: 0px;
+    margin-left: 1rem;
+}
+
+.logged-nav-list .logged-nav-item {
+    display: block;
+    width: 90%;
+    margin-bottom: 1.3rem;
+    padding: 5px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.logged-nav-list .logged-nav-item:hover {
+    background-color: rgba(12, 12, 12, 0.13);
+}

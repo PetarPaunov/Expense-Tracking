@@ -32,7 +32,7 @@
             if (User.Identity!.IsAuthenticated)
             {
                 // Have to think about it !!
-                return RedirectToAction(Index, Home);
+                return RedirectToAction("Index", "UserHome", new { area = "User" });
             }
 
             var model = new RegisterViewModel();
@@ -86,7 +86,7 @@
             if (User.Identity!.IsAuthenticated)
             {
                 // Have to think about it !!
-                return RedirectToAction(Index, Home);
+                return RedirectToAction("Index", "UserHome", new { area = "User" });
             }
 
             var model = new LoginViewModel();
@@ -114,13 +114,20 @@
                 if (result.Succeeded)
                 {
                     // Have to think about it !!
-                    return RedirectToAction(Index);
+                    return RedirectToAction("Index", "UserHome", new { area = "User"});
                 }
             }
 
             ModelState.AddModelError(String.Empty, SomethingWentWrong);
 
             return View(model);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+
+            return RedirectToAction(Index, Home, new {area = "default"});
         }
     }
 }

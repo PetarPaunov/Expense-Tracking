@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ExpenseTracking.Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css//logged-user.css" asp-append-version="true" />
+</head>
+<body>
+    <partial name="_LandingPagePartial" />
+
+    <div class="container">
+        <main role="main" class="pb-3 logged-main">
+            <nav class="logged-nav">
+                <p class="logged-nav-logo">Track Your Expenses</p>
+
+                <div class="user-info">
+                    <p class="user-name">Welcome Back:</p>
+                </div>
+
+                <ul class="logged-nav-list">
+                    <li class="logged-nav-item">
+                        <a href="" class="logged-nav-link">Link</a>
+                    </li>
+                    <li class="logged-nav-item">
+                        <a href="" class="logged-nav-link">Link</a>
+                    </li>
+                    <li class="logged-nav-item">
+                        <a href="" class="logged-nav-link">Link</a>
+                    </li>
+                    <li class="logged-nav-item">
+                        <a href="" class="logged-nav-link">Link</a>
+                    </li>
+                    <li class="logged-nav-item">
+                        <a asp-area="default" asp-controller="Account" asp-action="Logout" class="logged-nav-link">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="logged-container">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+
+    @*<footer class="border-top footer text-muted">
+    <div class="container">
+    &copy; 2023 - ExpenseTracking.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+    </footer>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

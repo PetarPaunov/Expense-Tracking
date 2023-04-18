@@ -17,6 +17,12 @@ namespace ExpenseTracking.Web.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            if (User.Identity!.IsAuthenticated)
+            {
+                // Have to think about it !!
+                return RedirectToAction("Index", "UserHome", new { area = "User" });
+            }
+
             return View();
         }
 
