@@ -13,7 +13,10 @@
     padding: 50px 35px;
 }
 
-.login-register.register{
+@media (max-width: 500px){
+    .login-register {
+        width: 90%;
+    }
 }
 
 .login-register * {
