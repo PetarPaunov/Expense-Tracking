@@ -1,5 +1,6 @@
 ﻿namespace ExpenseTracking.Infrastructure.Models.Wallet
 {
+    using ExpenseTracking.Infrastructure.Models.Account;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,5 +17,10 @@
 
         [Column(TypeName = "decimal(14, 2)")]
         public decimal Expence { get; set; }
+
+        public string ApplicationUserId { get; set; } = null!;
+
+        [ForeignKey(nameof(ApplicationUserId))]
+        public ApplicationUser ApplicationUser { get; set; } = null!;
     }
 }
