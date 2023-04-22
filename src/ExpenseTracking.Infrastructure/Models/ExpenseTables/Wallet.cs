@@ -1,4 +1,4 @@
-﻿namespace ExpenseTracking.Infrastructure.Models.Wallet
+﻿namespace ExpenseTracking.Infrastructure.ExpenseTables.Wallet
 {
     using ExpenseTracking.Infrastructure.Models.Account;
     using System.ComponentModel.DataAnnotations;
