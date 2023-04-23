@@ -2,8 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static ExpenseTracking.Core.Contracts.AccountConstants;
-    using static ExpenseTracking.Core.Contracts.ErrorConstants;
+    using static ExpenseTracking.Core.Constants.AccountConstants;
+    using static ExpenseTracking.Core.Constants.ErrorConstants;
 
     public class RegisterViewModel
     {

@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using static ExpenseTracking.Core.Contracts.RoleConstants;
+    using static ExpenseTracking.Core.Constants.RoleConstants;
 
     [Authorize]
     [Area("User")]

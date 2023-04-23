@@ -1,4 +1,4 @@
-﻿namespace ExpenseTracking.Core.Contracts
+﻿namespace ExpenseTracking.Core.Constants
 {
     public static class AccountConstants
     {

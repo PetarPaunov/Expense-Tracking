@@ -7,8 +7,8 @@
     using Microsoft.AspNetCore.Mvc;
 
     using static ExpenseTracking.Web.Constants.RedirectConstants;
-    using static ExpenseTracking.Core.Contracts.ErrorConstants;
-    using static ExpenseTracking.Core.Contracts.RoleConstants;
+    using static ExpenseTracking.Core.Constants.ErrorConstants;
+    using static ExpenseTracking.Core.Constants.RoleConstants;
 
     public class AccountController : BaseController
     {
