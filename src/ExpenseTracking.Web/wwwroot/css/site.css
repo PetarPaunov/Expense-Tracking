@@ -16,3 +16,16 @@ html {
 body {
     margin-bottom: 60px;
 }
+
+.fa-3x{
+    font-size: 6em;
+}
+
+.mb-2{
+    font-size: 1.5em;
+}
+
+.mb-0,
+.as-4 {
+    font-size: 1.5em;
+}
