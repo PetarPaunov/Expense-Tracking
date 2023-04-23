@@ -2,7 +2,7 @@
 {
     public enum Type
     {
-        Expense = 0,
-        Income = 10,
+        Expense = 10,
+        Income = 20,
     }
 }
