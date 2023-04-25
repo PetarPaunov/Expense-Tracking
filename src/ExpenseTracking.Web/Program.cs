@@ -1,6 +1,8 @@
 using ExpenseTracking.Infrastructure;
 using ExpenseTracking.Infrastructure.Models.Account;
+using ExpenseTracking.Web.Extensions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,18 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+});
+
+builder.Services.AddControllersWithViews(option =>
+{
+    option.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+});
+
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
