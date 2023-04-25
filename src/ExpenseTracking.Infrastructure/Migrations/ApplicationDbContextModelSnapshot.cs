@@ -52,7 +52,7 @@ namespace ExpenseTracking.Infrastructure.Migrations
                     b.HasIndex("ApplicationUserId")
                         .IsUnique();
 
-                    b.ToTable("Wallets");
+                    b.ToTable("Wallets", (string)null);
                 });
 
             modelBuilder.Entity("ExpenseTracking.Infrastructure.Models.Account.ApplicationUser", b =>
@@ -141,7 +141,7 @@ namespace ExpenseTracking.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("ExpenseTracking.Infrastructure.Models.ExpenseTables.Transaction", b =>
@@ -178,7 +178,7 @@ namespace ExpenseTracking.Infrastructure.Migrations
 
                     b.HasIndex("CategotyId");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("Transactions", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

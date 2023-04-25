@@ -9,6 +9,7 @@
     using static ExpenseTracking.Web.Constants.RedirectConstants;
     using static ExpenseTracking.Core.Constants.ErrorConstants;
     using static ExpenseTracking.Core.Constants.RoleConstants;
+    using ExpenseTracking.Infrastructure.ExpenseTables.Wallet;
 
     public class AccountController : BaseController
     {
@@ -52,6 +53,7 @@
             var user = new ApplicationUser()
             {
                 UserName = model.UserName,
+                Wallet = new Wallet(),
             };
 
             var result = await this.userManager

@@ -1,41 +1,46 @@
-﻿<div class="container-fluid pt-4 px-4">
+﻿@using ExpenseTracking.Core.Models.WalletViewModels
+
+@model WalletInformationViewModel
+
+<div class="container-fluid pt-4 px-4">
     <div class="row g-4">
         <div class="col-sm-6 col-xl-3">
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa-sharp fa-solid fa-euro-sign fa-3x text-primary"></i>
+                <p class="fa-3x text-primary">@Model.CurrencySymbol</p>
+
                 <div class="ms-3">
                     <p class="mb-2">Balance</p>
-                    <h6 class="mb-0">$1234</h6>
+                    <h6 class="mb-0">@Model.CurrencySymbol @Model.Balance</h6>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa-sharp fa-solid fa-turkish-lira-sign fa-3x text-primary"></i>
+                <p class="fa-3x text-primary">@Model.CurrencySymbol</p>
+
                 <div class="ms-3">
                     <p class="mb-2">Income</p>
-                    <h6 class="mb-0">$1234</h6>
+                    <h6 class="mb-0">@Model.CurrencySymbol @Model.Income</h6>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                <div>
-                <i class="fa-solid fa-l fa-3x text-primary"></i>
-                <i class="fa-solid fa-v fa-3x text-primary"></i>
-                </div>
+                <p class="fa-3x text-primary">@Model.CurrencySymbol</p>
+
                 <div class="ms-3">
                     <p class="mb-2">Expense</p>
-                    <h6 class="mb-0">$1234</h6>
+                    <h6 class="mb-0">@Model.CurrencySymbol @Model.Expence</h6>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa-sharp fa-solid fa-dollar-sign fa-3x text-primary"></i>
+                <p class="fa-3x text-primary">@Model.CurrencySymbol</p>
+                @*<i class="fa-sharp fa-solid fa-dollar-sign fa-3x text-primary"></i>*@
                 <div class="ms-3">
                     <p class="mb-2">Savings</p>
-                    <h6 class="mb-0">$1234</h6>
+                    <h6 class="mb-0">@Model.CurrencySymbol @Model.Savings</h6>
                 </div>
             </div>
         </div>

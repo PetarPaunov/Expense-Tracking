@@ -23,4 +23,8 @@
     <ProjectReference Include="..\ExpenseTracking.Infrastructure\ExpenseTracking.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\User\Views\Shared\" />
+  </ItemGroup>
+
 </Project>
