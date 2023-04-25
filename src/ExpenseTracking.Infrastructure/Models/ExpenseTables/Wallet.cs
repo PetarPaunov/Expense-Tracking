@@ -19,6 +19,9 @@
         [Column(TypeName = "decimal(14, 2)")]
         public decimal Expence { get; set; }
 
+        [Column(TypeName = "decimal(14, 2)")]
+        public decimal Savings { get; set; }
+
         public Currency Currency { get; set; } = Currency.EUR;
 
         public string ApplicationUserId { get; set; } = null!;
