@@ -52,8 +52,7 @@
         <div class="col-sm-12 col-xl-8">
             <div class="bg-secondary text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Salse & Revenue</h6>
-                    <a href="">Show All</a>
+                    <h6 class="mb-0">Income & Expense</h6>
                 </div>
                 <canvas id="salse-revenue"></canvas>
             </div>
@@ -66,3 +65,50 @@
         </div>
     </div>
 </div>
+
+<script>
+    var ctx2 = $("#salse-revenue").get(0).getContext("2d");
+    var myChart2 = new Chart(ctx2, {
+        type: "line",
+        data: {
+            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+            datasets: [{
+                label: "Income",
+                data: [15, 30, 55, 45, 70, 65, 85],
+                backgroundColor: "rgba(235, 22, 22, .7)",
+                fill: true
+            },
+            {
+                label: "Expense",
+                data: [99, 135, 170, 130, 190, 180, 270],
+                backgroundColor: "rgba(235, 22, 22, .5)",
+                fill: true
+            }
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    var ctx5 = $("#pie-chart").get(0).getContext("2d");
+    var myChart5 = new Chart(ctx5, {
+        type: "pie",
+        data: {
+            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
+            datasets: [{
+                backgroundColor: [
+                    "rgba(235, 22, 22, .7)",
+                    "rgba(235, 22, 22, .6)",
+                    "rgba(235, 22, 22, .5)",
+                    "rgba(235, 22, 22, .4)",
+                    "rgba(235, 22, 22, .3)"
+                ],
+                data: [55, 49, 44, 24, 15]
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+</script>
