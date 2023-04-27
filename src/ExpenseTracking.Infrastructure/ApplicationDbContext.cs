@@ -17,6 +17,8 @@
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<IncomeForDay> IncomeForDays { get; set; }
+        public DbSet<ExpenseForDay> ExpenseForDays { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
