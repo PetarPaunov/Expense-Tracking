@@ -10,6 +10,7 @@
         {
             services.AddScoped<IGenericRepository, GenericRepository>();
             services.AddScoped<IWalletService, WalletService>();
+            services.AddScoped<ICommonService, CommonService>();
 
             return services;
         }

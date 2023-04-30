@@ -5,5 +5,6 @@
     public interface IWalletService
     {
         public Task<WalletInformationViewModel> GetWalletInformationAsync(string userId);
+        public Task<string[]> GetExpensesAndIncomesForDays(string userId);
     }
 }

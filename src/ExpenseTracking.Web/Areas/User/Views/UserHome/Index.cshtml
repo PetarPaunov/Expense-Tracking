@@ -71,16 +71,16 @@
     var myChart2 = new Chart(ctx2, {
         type: "line",
         data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+            labels: [@this.ViewBag.DaysOfTheMonth],
             datasets: [{
                 label: "Income",
-                data: [15, 30, 55, 45, 70, 65, 85],
+                data: [@this.ViewBag.ExpensesForDay],
                 backgroundColor: "rgba(235, 22, 22, .7)",
                 fill: true
             },
             {
                 label: "Expense",
-                data: [99, 135, 170, 130, 190, 180, 270],
+                data: [@this.ViewBag.IncomesForDay],
                 backgroundColor: "rgba(235, 22, 22, .5)",
                 fill: true
             }

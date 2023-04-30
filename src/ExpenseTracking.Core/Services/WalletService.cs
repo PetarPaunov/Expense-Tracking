@@ -7,6 +7,8 @@
     using ExpenseTracking.Infrastructure.Models.Account;
     using ExpenseTracking.Infrastructure.Models.Enums;
     using Microsoft.EntityFrameworkCore;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text;
     using static ExpenseTracking.Core.Constants.CurrencySymbolConstants;
     using static ExpenseTracking.Core.Constants.ErrorConstants;
 
@@ -50,7 +52,8 @@
             return walletInfo;
         }
 
-        private string GetCurrencySymbol(string currentCurrency)
+        // Add comment
+        private static string GetCurrencySymbol(string currentCurrency)
         {
             var currencySymbol = "";
 
@@ -63,6 +66,38 @@
             }
 
             return currencySymbol;
+        }
+
+        public async Task<string[]> GetExpensesAndIncomesForDays(string userId)
+        {
+            var userWallet = await this.repository.AllReadonly<Wallet>()
+               .FirstOrDefaultAsync(x => x.ApplicationUserId == userId);
+
+            if (userWallet == null)
+            {
+                throw new ArgumentNullException(WalletNotFoundExeption);
+            }
+
+            var expenseAndIncomeForDay = new string[2];
+
+            var expensesForDay = new StringBuilder();
+            var incomesForDay = new StringBuilder();
+
+            foreach (var expense in userWallet.ExpenseForDay)
+            {
+                expensesForDay.Append(expense.Expense + ", ");
+            }
+
+            expenseAndIncomeForDay[0] = expensesForDay.ToString();
+
+            foreach (var income in userWallet.IncomeForDay)
+            {
+                incomesForDay.Append(income.Income + ", ");
+            }
+
+            expenseAndIncomeForDay[1] = incomesForDay.ToString();
+
+            return expenseAndIncomeForDay;
         }
     }
 }

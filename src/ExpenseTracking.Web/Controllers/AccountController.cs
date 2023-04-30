@@ -10,20 +10,25 @@
     using static ExpenseTracking.Core.Constants.ErrorConstants;
     using static ExpenseTracking.Core.Constants.RoleConstants;
     using ExpenseTracking.Infrastructure.ExpenseTables.Wallet;
+    using ExpenseTracking.Core.Contracts;
+    using ExpenseTracking.Web.Extensions;
 
     public class AccountController : BaseController
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly ICommonService commonService;
 
         public AccountController(UserManager<ApplicationUser> userManager, 
                                  SignInManager<ApplicationUser> signInManager,
-                                 RoleManager<IdentityRole> roleManager)
+                                 RoleManager<IdentityRole> roleManager,
+                                 ICommonService commonService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.commonService = commonService;
         }
 
         [HttpGet]
@@ -50,10 +55,15 @@
                 return View(model);
             }
 
+            var wallet = new Wallet();
+
+            wallet.IncomeForDay.AddRange(this.commonService.AddZeroIncomeForThePastDays(wallet));
+            wallet.ExpenseForDay.AddRange(this.commonService.AddZeroExpenseForThePastDays(wallet));
+
             var user = new ApplicationUser()
             {
                 UserName = model.UserName,
-                Wallet = new Wallet(),
+                Wallet = wallet,
             };
 
             var result = await this.userManager
