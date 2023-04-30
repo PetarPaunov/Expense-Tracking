@@ -6,6 +6,7 @@
     using ExpenseTracking.Infrastructure.GenericRepository;
     using ExpenseTracking.Infrastructure.Models.Account;
     using ExpenseTracking.Infrastructure.Models.Enums;
+    using ExpenseTracking.Infrastructure.Models.ExpenseTables;
     using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
     using System.Text;
@@ -71,6 +72,8 @@
         public async Task<string[]> GetExpensesAndIncomesForDays(string userId)
         {
             var userWallet = await this.repository.AllReadonly<Wallet>()
+               .Include(x => x.IncomeForDay)
+               .Include(x => x.ExpenseForDay)
                .FirstOrDefaultAsync(x => x.ApplicationUserId == userId);
 
             if (userWallet == null)
