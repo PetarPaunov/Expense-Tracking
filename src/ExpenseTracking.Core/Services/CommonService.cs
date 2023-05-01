@@ -7,8 +7,11 @@
 
     public class CommonService : ICommonService
     {
-        // Add comment
-
+        /// <summary>
+        /// Adds zero(0) expenses for the past days of the month
+        /// </summary>
+        /// <param name="wallet">Logged-in user's wallet</param>
+        /// <returns>All initial expenses</returns>
         public IEnumerable<ExpenseForDay> AddZeroExpenseForThePastDays(Wallet wallet)
         {
             var pastDays = GetPastDaysOfTheMonth();
@@ -28,8 +31,11 @@
             return expensesForDay;
         }
 
-        // Add comment
-
+        /// <summary>
+        /// Adds zero(0) incomes for the past days of the month
+        /// </summary>
+        /// <param name="wallet">Logged-in user's wallet</param>
+        /// <returns>All initial incomes</returns>
         public IEnumerable<IncomeForDay> AddZeroIncomeForThePastDays(Wallet wallet)
         {
             var pastDays = GetPastDaysOfTheMonth();
@@ -49,7 +55,10 @@
             return incomesForDay;
         }
 
-        // Add comment
+        /// <summary>
+        /// Gets all days of the month
+        /// </summary>
+        /// <returns>All days of the month as a string to be displayed in the chart</returns>
         public string GetDaysOfTheMonth()
         {
             var daysOfTheMonth = DateTime.DaysInMonth(DateTime.UtcNow.Year, DateTime.UtcNow.Month);
@@ -64,7 +73,10 @@
             return stringBuilder.ToString();
         }
 
-        // Add comment
+        /// <summary>
+        /// Gets all past days of the month
+        /// </summary>
+        /// <returns>All past days of the month</returns>
         private static int GetPastDaysOfTheMonth()
         {
             var daysOfTheMonth = DateTime.DaysInMonth(DateTime.UtcNow.Year, DateTime.UtcNow.Month);

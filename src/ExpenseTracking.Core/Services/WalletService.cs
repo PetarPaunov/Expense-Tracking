@@ -53,7 +53,11 @@
             return walletInfo;
         }
 
-        // Add comment
+        /// <summary>
+        /// Gets the currency symbol based on the user's currency symbol
+        /// </summary>
+        /// <param name="currentCurrency">User-defined currency symbol retrieved from the database</param>
+        /// <returns>The currency symbol that will be displayed in the view</returns>
         private static string GetCurrencySymbol(string currentCurrency)
         {
             var currencySymbol = "";
@@ -70,7 +74,12 @@
         }
 
 
-        // Add comment
+        /// <summary>
+        /// Gets all expenses and incomes of the user
+        /// </summary>
+        /// <param name="userId">Unique user identifier</param>
+        /// <returns>All expenses and incomes of the user as a string to be able to be set in the chart</returns>
+        /// <exception cref="ArgumentNullException">If the user wallet is not found</exception>
         public async Task<string[]> GetExpensesAndIncomesForDays(string userId)
         {
             var userWallet = await this.repository.AllReadonly<Wallet>()
@@ -105,7 +114,14 @@
             return expenseAndIncomeForDay;
         }
 
-        // Add comment
+        /// <summary>
+        /// Adds new initial income and expenses for the day. If it is the same day, the method does nothing.
+        /// If it is the next day of the month, adds new initial revenue and expenses for the day.
+        /// If it is the next month, removes all income and expenses and adds new initial
+        /// </summary>
+        /// <param name="userId">Unique user identifier</param>
+        /// <returns>void</returns>
+        /// <exception cref="ArgumentNullException">If the user wallet is not found</exception>
         public async Task AddNewDailyExpenseAndIncome(string userId)
         {
             var userWallet = await this.repository.All<Wallet>()
