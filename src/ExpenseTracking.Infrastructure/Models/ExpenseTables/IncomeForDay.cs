@@ -10,7 +10,7 @@
 
         [Column(TypeName = "decimal(14, 2)")]
         public decimal Income { get; set; }
-        public string DayOfMonth { get; set; } = null!;
+        public int DayOfMonth { get; set; }
 
         public Guid WalletId { get; set; }
 
