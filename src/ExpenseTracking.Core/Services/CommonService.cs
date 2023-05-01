@@ -19,7 +19,7 @@
             {
                 expensesForDay.Add(new ExpenseForDay()
                 {
-                    DayOfMonth = (i + 1).ToString(),
+                    DayOfMonth = i + 1,
                     Expense = 0,
                     Wallet = wallet
                 });
@@ -40,7 +40,7 @@
             {
                 incomesForDay.Add(new IncomeForDay()
                 {
-                    DayOfMonth = (i + 1).ToString(),
+                    DayOfMonth = i + 1,
                     Income = 0,
                     Wallet = wallet
                 });

@@ -22,6 +22,8 @@
 
             // Add logger and try catch blocks
 
+            await this.walletService.AddNewDailyExpenseAndIncome(userId);
+
             var model = await this.walletService.GetWalletInformationAsync(userId);
             var dayOfTheMonth = this.commonService.GetDaysOfTheMonth();
 

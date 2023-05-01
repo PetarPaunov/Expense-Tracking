@@ -69,6 +69,8 @@
             return currencySymbol;
         }
 
+
+        // Add comment
         public async Task<string[]> GetExpensesAndIncomesForDays(string userId)
         {
             var userWallet = await this.repository.AllReadonly<Wallet>()
@@ -101,6 +103,61 @@
             expenseAndIncomeForDay[1] = incomesForDay.ToString();
 
             return expenseAndIncomeForDay;
+        }
+
+        // Add comment
+        public async Task AddNewDailyExpenseAndIncome(string userId)
+        {
+            var userWallet = await this.repository.All<Wallet>()
+               .Include(x => x.IncomeForDay)
+               .Include(x => x.ExpenseForDay)
+               .FirstOrDefaultAsync(x => x.ApplicationUserId == userId);
+
+            if (userWallet == null)
+            {
+                throw new ArgumentNullException(WalletNotFoundExeption);
+            }
+
+            var incomeDayOfMonth = userWallet.IncomeForDay
+                .OrderByDescending(x => x.DayOfMonth)
+                .First();
+
+            var expenseDayOfMonth = userWallet.ExpenseForDay
+                .OrderByDescending(x => x.DayOfMonth)
+                .First();
+
+            var thoday = DateTime.UtcNow.Day;
+
+            if (thoday == incomeDayOfMonth.DayOfMonth
+                && thoday == expenseDayOfMonth.DayOfMonth)
+            {
+                return;
+            }
+
+            if (thoday < incomeDayOfMonth.DayOfMonth
+                && thoday < expenseDayOfMonth.DayOfMonth)
+            {
+                userWallet.IncomeForDay.Clear();
+                userWallet.ExpenseForDay.Clear();
+            }
+
+            userWallet.IncomeForDay.Add(new IncomeForDay()
+            {
+                DayOfMonth = thoday,
+                Income = 0,
+                Wallet = userWallet,
+                WalletId = userWallet.Id,
+            });
+
+            userWallet.ExpenseForDay.Add(new ExpenseForDay()
+            {
+                DayOfMonth = thoday,
+                Expense = 0,
+                Wallet = userWallet,
+                WalletId = userWallet.Id,
+            });
+
+            await this.repository.SaveChangesAsync();
         }
     }
 }
