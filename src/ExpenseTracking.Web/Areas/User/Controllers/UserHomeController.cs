@@ -8,32 +8,44 @@
     {
         private readonly IWalletService walletService;
         private readonly ICommonService commonService;
+        private readonly ILogger<UserHomeController> logger;
 
         public UserHomeController(IWalletService walletService,
-                                  ICommonService commonService)
+                                  ICommonService commonService,
+                                  ILogger<UserHomeController> logger)
         {
             this.walletService = walletService;
             this.commonService = commonService;
+            this.logger = logger;
         }
 
         public async Task<IActionResult> Index()
         {
-            var userId = this.User.Id();
+            try
+            {
+                var userId = this.User.Id();
 
-            // Add logger and try catch blocks
+                await this.walletService.AddNewDailyExpenseAndIncome(userId);
 
-            await this.walletService.AddNewDailyExpenseAndIncome(userId);
+                var model = await this.walletService.GetWalletInformationAsync(userId);
+                var dayOfTheMonth = this.commonService.GetDaysOfTheMonth();
 
-            var model = await this.walletService.GetWalletInformationAsync(userId);
-            var dayOfTheMonth = this.commonService.GetDaysOfTheMonth();
+                var incomesExpensesForDay = await this.walletService.GetExpensesAndIncomesForDays(userId);
 
-            var incomesExpensesForDay = await this.walletService.GetExpensesAndIncomesForDays(userId);
+                this.ViewBag.DaysOfTheMonth = dayOfTheMonth;
+                this.ViewBag.ExpnsesForDay = incomesExpensesForDay[0];
+                this.ViewBag.IncomesForDay = incomesExpensesForDay[1];
 
-            this.ViewBag.DaysOfTheMonth = dayOfTheMonth;
-            this.ViewBag.ExpnsesForDay = incomesExpensesForDay[0];
-            this.ViewBag.IncomesForDay = incomesExpensesForDay[1];
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.Message);
 
-            return View(model);
+                // Add correnct Error page!!!
+                return RedirectToAction("ErrorSomething", "Home");
+            }
+
         }
     }
 }
