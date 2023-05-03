@@ -1,45 +1,53 @@
-﻿<div class="container-fluid pt-4 px-4">
+﻿@using ExpenseTracking.Core.Models.TransactionViewModels
+
+@model AddTransactionViewModel
+
+<div class="container-fluid pt-4 px-4">
     <div class="row g-4">
         <div class="col-sm-12 col-xl-4">
 
         <div class="bg-secondary rounded h-100 p-4">
-            <form>
-                <h6 class="mb-4">Floating Label</h6>
+            <form method="post">
+                <h6 class="mb-4">Add Transiaction</h6>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput"
-                           placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
+                    <input asp-for="Amount" type="number" class="form-control" id="floatingInput" >
+                    <label for="floatingInput">Amount</label>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword"
-                           placeholder="Password">
-                    <label for="floatingPassword">Password</label>
-                </div>
+                    <div class="form-floating mb-3">
+                        <select asp-for="CategoryId" class="form-select" id="floatingSelect"
+                                aria-label="Floating label select example">
+                            @foreach (var category in this.ViewBag.Categories)
+                            {
+                                <option value="@category.Id">@category.Icon @category.Title</option>
+                            }
+                        </select>
+                        <label for="floatingSelect">Category</label>
+                    </div>
                 <div class="form-floating mb-3">
                     <div class="col-sm-10">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios"
-                                   id="gridRadios1" value="option1" checked>
+                            <input asp-for="Type" class="form-check-input" type="radio"
+                                   id="gridRadios1" value="Income" checked>
                             <label class="form-check-label" for="gridRadios1">
-                                First radio
+                                Expense
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios"
-                                   id="gridRadios2" value="option2">
+                            <input asp-for="Type" class="form-check-input" type="radio"
+                                   id="gridRadios2" value="Expense">
                             <label class="form-check-label" for="gridRadios2">
-                                Second radio
+                                Income
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-floating mb-3">
-                    <textarea class="form-control" placeholder="Leave a comment here"
-                              id="floatingTextarea" style="height: 150px;"></textarea>
-                    <label for="floatingTextarea">Comments</label>
+                    <textarea asp-for="Note" class="form-control" placeholder="Leave a comment here"
+                              id="floatingTextarea" style="height: 120px;"></textarea>
+                    <label for="floatingTextarea">Transaction Note</label>
                 </div>
                 <div class="form-floating ">
-                    <button type="submit" class="btn btn-primary">Sign in</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>
         </div>
