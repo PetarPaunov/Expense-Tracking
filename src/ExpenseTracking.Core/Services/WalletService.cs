@@ -119,6 +119,7 @@
 
         /// <summary>
         /// Adds new initial income and expenses for the day. If it is the same day, the method does nothing.
+        /// If more days are past adds the difference between last income or expense and current day of the month.
         /// If it is the next day of the month, adds new initial revenue and expenses for the day.
         /// If it is the next month, removes all income and expenses and adds new initial
         /// </summary>
