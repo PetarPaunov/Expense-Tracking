@@ -2,15 +2,19 @@
 {
     using ExpenseTracking.Core.Contracts;
     using ExpenseTracking.Core.Models.TransactionViewModels;
+    using ExpenseTracking.Web.Extensions;
     using Microsoft.AspNetCore.Mvc;
 
     public class TransactionController : BaseController
     {
         private readonly ICategoryService categoryService;
+        private readonly ITransactionService transactionService;
 
-        public TransactionController(ICategoryService categoryService)
+        public TransactionController(ICategoryService categoryService, 
+                                     ITransactionService transactionService)
         {
             this.categoryService = categoryService;
+            this.transactionService = transactionService;
         }
 
         [HttpGet]
@@ -25,6 +29,7 @@
             return View(model);
         }
 
+        // Add try catch and logger
         [HttpPost]
         public async Task<IActionResult> Index(AddTransactionViewModel model)
         {
@@ -33,7 +38,9 @@
                 return View(model);
             }
 
+            var userId = this.User.Id();
 
+            await this.transactionService.AddTransactionAsync(model, userId);
 
             return RedirectToAction(nameof(Index));
         }

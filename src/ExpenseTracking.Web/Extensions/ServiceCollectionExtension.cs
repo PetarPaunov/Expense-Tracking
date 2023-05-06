@@ -12,6 +12,7 @@
             services.AddScoped<IWalletService, WalletService>();
             services.AddScoped<ICommonService, CommonService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ITransactionService, TransactionService>();
 
             return services;
         }
