@@ -8,5 +8,6 @@
         public string GetDaysOfTheMonth();
         public IEnumerable<IncomeForDay> AddZeroIncomeForThePastDays(Wallet wallet);
         public IEnumerable<ExpenseForDay> AddZeroExpenseForThePastDays(Wallet wallet);
+        public int GetPastDaysOfTheMonth();
     }
 }

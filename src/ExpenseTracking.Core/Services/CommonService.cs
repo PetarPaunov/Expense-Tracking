@@ -77,7 +77,7 @@
         /// Gets all past days of the month
         /// </summary>
         /// <returns>All past days of the month</returns>
-        private static int GetPastDaysOfTheMonth()
+        public int GetPastDaysOfTheMonth()
         {
             var daysOfTheMonth = DateTime.DaysInMonth(DateTime.UtcNow.Year, DateTime.UtcNow.Month);
 

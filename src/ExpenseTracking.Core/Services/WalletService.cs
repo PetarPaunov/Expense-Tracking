@@ -16,10 +16,13 @@
     public class WalletService : IWalletService
     {
         private readonly IGenericRepository repository;
+        private readonly ICommonService commonService;
 
-        public WalletService(IGenericRepository repository)
+        public WalletService(IGenericRepository repository, 
+                             ICommonService commonService)
         {
             this.repository = repository;
+            this.commonService = commonService;
         }
 
         /// <summary>
@@ -157,23 +160,38 @@
                 userWallet.ExpenseForDay.Clear();
             }
 
-            userWallet.IncomeForDay.Add(new IncomeForDay()
-            {
-                DayOfMonth = thoday,
-                Income = 0,
-                Wallet = userWallet,
-                WalletId = userWallet.Id,
-            });
+            var userHasNotLoggedInDays = GetPastDaysTheUserHasNotLoggedIn(incomeDayOfMonth.DayOfMonth);
 
-            userWallet.ExpenseForDay.Add(new ExpenseForDay()
+            for (int i = 0; i < userHasNotLoggedInDays; i++)
             {
-                DayOfMonth = thoday,
-                Expense = 0,
-                Wallet = userWallet,
-                WalletId = userWallet.Id,
-            });
+                userWallet.IncomeForDay.Add(new IncomeForDay()
+                {
+                    DayOfMonth = incomeDayOfMonth.DayOfMonth + i + 1,
+                    Income = 0,
+                    Wallet = userWallet,
+                    WalletId = userWallet.Id,
+                });
+
+                userWallet.ExpenseForDay.Add(new ExpenseForDay()
+                {
+                    DayOfMonth = expenseDayOfMonth.DayOfMonth + i + 1,
+                    Expense = 0,
+                    Wallet = userWallet,
+                    WalletId = userWallet.Id,
+                });
+            }
 
             await this.repository.SaveChangesAsync();
+        }
+
+        // Add comment
+        private int GetPastDaysTheUserHasNotLoggedIn(int lastIncmeDayOfMonth)
+        {
+            var pastDays = this.commonService.GetPastDaysOfTheMonth();
+
+            var difference = pastDays - lastIncmeDayOfMonth;
+
+            return difference;
         }
     }
 }
