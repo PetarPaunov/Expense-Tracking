@@ -4,13 +4,13 @@
 
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
-        <div class="col-sm-12 col-xl-4">
+        <div class="col-sm-12 col-xl-3">
 
         <div class="bg-secondary rounded h-100 p-4">
             <form method="post">
                 <h6 class="mb-4">Add Transiaction</h6>
                 <div class="form-floating mb-3">
-                    <input asp-for="Amount" type="number" class="form-control" id="floatingInput" >
+                    <input asp-for="Amount" type="number" step="any" class="form-control" id="floatingInput" >
                     <label for="floatingInput">Amount</label>
                 </div>
                     <div class="form-floating mb-3">
@@ -52,7 +52,7 @@
             </form>
         </div>
         </div>
-        <div class="col-sm-12 col-xl-8">
+        <div class="col-sm-12 col-xl-9">
             <div class="bg-secondary rounded  p-4">
                 <h6 class="mb-4">Table Without Border</h6>
                 <table class="table table-borderless">

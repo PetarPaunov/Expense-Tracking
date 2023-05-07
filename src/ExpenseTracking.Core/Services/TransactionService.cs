@@ -52,8 +52,6 @@
 
             var enumValue = Enum.Parse<Type>(model.Type);
 
-            user.Wallet.Balance += (decimal)model.Amount;
-
             var incomeDayOfMonth = userWallet.IncomeForDay
                 .OrderByDescending(x => x.DayOfMonth)
                 .First();
@@ -66,11 +64,13 @@
             {
                 user.Wallet.Expence += (decimal)model.Amount;
                 expenseDayOfMonth.Expense += (decimal)model.Amount;
+                user.Wallet.Balance -= (decimal)model.Amount;
             }
             else
             {
                 user.Wallet.Income += (decimal)model.Amount;
                 incomeDayOfMonth.Income += (decimal)model.Amount;
+                user.Wallet.Balance += (decimal)model.Amount;
             }
 
             var newTransaction = new Transaction()
@@ -94,6 +94,7 @@
             var userTransactions = await this.repository
                 .AllReadonly<Transaction>()
                 .Where(x => x.ApplicationUserId == userId)
+                .OrderByDescending(x => x.CreatedOn)
                 .Select(x => new GetUserTransactionsViewModel()
                 {
                     Id = x.Id,
