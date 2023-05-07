@@ -10,6 +10,7 @@
     using static ExpenseTracking.Core.Constants.ErrorConstants;
     using Microsoft.EntityFrameworkCore;
     using ExpenseTracking.Infrastructure.ExpenseTables.Wallet;
+    using System.Collections.Generic;
 
     public class TransactionService : ITransactionService
     {
@@ -85,6 +86,25 @@
 
             await this.repository.AddAsync<Transaction>(newTransaction);
             await this.repository.SaveChangesAsync();
+        }
+
+        // Add comment
+        public async Task<IEnumerable<GetUserTransactionsViewModel>> GetUserTransactionsAsync(string userId)
+        {
+            var userTransactions = await this.repository
+                .AllReadonly<Transaction>()
+                .Where(x => x.ApplicationUserId == userId)
+                .Select(x => new GetUserTransactionsViewModel()
+                {
+                    Id = x.Id,
+                    Amount = x.Amount,
+                    Note = x.Note,
+                    Type = x.Type.ToString(),
+                    CategoryTitleAndIcon = x.Category.Icon + " " + x.Category.Title
+                })
+                .ToListAsync();
+
+            return userTransactions;
         }
     }
 }

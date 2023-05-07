@@ -17,12 +17,18 @@
             this.transactionService = transactionService;
         }
 
+        // Add try catch and logger
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            var userId = this.User.Id();
+
+
             var categories = await this.categoryService.GetCategoriesAsync();
+            var transactions = await this.transactionService.GetUserTransactionsAsync(userId);
 
             this.ViewBag.Categories = categories;
+            this.ViewBag.Transactions = transactions;
 
             var model = new AddTransactionViewModel();
 

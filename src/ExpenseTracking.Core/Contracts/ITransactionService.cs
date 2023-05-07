@@ -5,5 +5,6 @@
     public interface ITransactionService
     {
         public Task AddTransactionAsync(AddTransactionViewModel model, string userId);
+        public Task<IEnumerable<GetUserTransactionsViewModel>> GetUserTransactionsAsync(string userId);
     }
 }
