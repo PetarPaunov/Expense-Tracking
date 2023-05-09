@@ -9,5 +9,6 @@
         public const string UserNotFoundExeption = "This user does not exist!";
         public const string WalletNotFoundExeption = "Wallet does not exist!";
         public const string CategoryNotFoundExeption = "This category does not exist!";
+        public const string TransactionNotFoundExeption = "This transaction does not exist!";
     }
 }

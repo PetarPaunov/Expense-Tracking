@@ -54,7 +54,7 @@
         </div>
         <div class="col-sm-12 col-xl-9">
             <div class="bg-secondary rounded  p-4">
-                <h6 class="mb-4">Table Without Border</h6>
+                <h6 class="mb-4">Transactions</h6>
                 <table class="table table-borderless" id="table-pager">
                     <thead>
                         <tr>
@@ -66,7 +66,7 @@
                     <tbody>
                         @foreach (var transaction in this.ViewBag.Transactions)
                         {
-                            <tr>
+                            <tr class="tr-hover" onclick="location.href='@Url.Action("InfoEdit", "Transaction", new { id=transaction.Id})'">
                                 <th scope="row">@transaction.CategoryTitleAndIcon</th>
                                 <td>@transaction.Amount @transaction.CurrencySymbol</td>
                                 <td>@transaction.Type</td>

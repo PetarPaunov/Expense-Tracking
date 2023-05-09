@@ -35,3 +35,8 @@ select[name="table-pager_length"],
 input[type="search"] {
     color: white;
 }
+
+.tr-hover:hover {
+    background-color: rgba(192,192,192, 0.2);
+    cursor: pointer;
+}

@@ -1,0 +1,79 @@
+﻿@using ExpenseTracking.Core.Models.TransactionViewModels
+
+@model GetForEditTransactionViewModel
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-3">
+
+            <div class="bg-secondary rounded h-100 p-4">
+                <form method="post">
+                    <h6 class="mb-4">Add Transiaction</h6>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Amount" type="number" value="@Model.Amount" step="any" class="form-control" id="floatingInput">
+                        <label for="floatingInput">Amount</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select asp-for="@Model.CategoryId" class="form-select" id="floatingSelect"
+                                aria-label="Floating label select example">
+                            @foreach (var category in this.ViewBag.Categories)
+                            {
+                                <option value="@category.Id">@category.Icon @category.Title</option>
+                            }
+                        </select>
+                        <label for="floatingSelect">Category</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input asp-for="Type" class="form-check-input" type="radio"
+                                       id="gridRadios1" value="Expense" checked>
+                                <label class="form-check-label" for="gridRadios1">
+                                    Expense
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input asp-for="Type" class="form-check-input" type="radio"
+                                       id="gridRadios2" value="Income">
+                                <label class="form-check-label" for="gridRadios2">
+                                    Income
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea asp-for="Note"value="@Model.Note" class="form-control" placeholder="Leave a comment here"
+                                  id="floatingTextarea" style="height: 120px;"></textarea>
+                        <label for="floatingTextarea">Transaction Note</label>
+                    </div>
+                    <div class="form-floating ">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-9">
+            <div class="bg-secondary rounded  p-4">
+                <h6 class="mb-4">Transactions</h6>
+                <table class="table table-borderless">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Amount: @this.ViewBag.Transaction.Amount @this.ViewBag.Transaction.CurrencySymbol</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Category: @this.ViewBag.Transaction.CategoryTitleAndIcon</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Type: @this.ViewBag.Transaction.Type</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Note: @this.ViewBag.Transaction.Note</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

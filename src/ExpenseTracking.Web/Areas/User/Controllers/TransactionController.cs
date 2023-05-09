@@ -23,7 +23,6 @@
         {
             var userId = this.User.Id();
 
-
             var categories = await this.categoryService.GetCategoriesAsync();
             var transactions = await this.transactionService.GetUserTransactionsAsync(userId);
 
@@ -49,6 +48,23 @@
             await this.transactionService.AddTransactionAsync(model, userId);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        // Add try catch and logger
+        [HttpGet]
+        public async Task<IActionResult> InfoEdit(string id)
+        {
+            var userId = this.User.Id();
+            
+            var transaction = await this.transactionService.GetTransactionInfoAsync(id, userId);
+            var categories = await this.categoryService.GetCategoriesAsync();
+
+            this.ViewBag.Categories = categories;
+            this.ViewBag.Transaction = transaction;
+
+            var model = await this.transactionService.GetTransactionForEditAsync(id);
+
+            return View(model);
         }
     }
 }
