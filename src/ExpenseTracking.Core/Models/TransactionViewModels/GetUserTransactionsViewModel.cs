@@ -7,5 +7,6 @@
         public string? Note { get; set; }
         public string CategoryTitleAndIcon { get; set; } = null!;
         public string Type { get; set; } = null!;
+        public string CurrencySymbol { get; set; } = null!;
     }
 }

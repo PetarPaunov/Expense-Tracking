@@ -5,6 +5,8 @@
     using ExpenseTracking.Infrastructure.Models.ExpenseTables;
     using System.Text;
 
+    using static ExpenseTracking.Core.Constants.CurrencySymbolConstants;
+
     public class CommonService : ICommonService
     {
         /// <summary>
@@ -86,6 +88,26 @@
             var pastDays = daysOfTheMonth - difference;
 
             return pastDays;
+        }
+
+        /// <summary>
+        /// Gets the currency symbol based on the user's currency symbol
+        /// </summary>
+        /// <param name="currentCurrency">User-defined currency symbol retrieved from the database</param>
+        /// <returns>The currency symbol that will be displayed in the view</returns>
+        public string GetCurrencySymbol(string currentCurrency)
+        {
+            var currencySymbol = "";
+
+            foreach (var currency in currencyArray)
+            {
+                if (currency.Key == currentCurrency)
+                {
+                    currencySymbol = currency.Value;
+                }
+            }
+
+            return currencySymbol;
         }
     }
 }

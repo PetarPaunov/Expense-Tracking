@@ -11,10 +11,10 @@ $(document).ready(function () {
         ],
         info: false,
         ordering: false,
-        columnDefs: [{
-            targets: 2,
-            render: $.fn.dataTable.render.ellipsis( 5)
-        }]
+        //columnDefs: [{
+        //    targets: 10,
+        //    render: $.fn.dataTable.render.ellipsis( 5)
+        //}]
     });
 });
 

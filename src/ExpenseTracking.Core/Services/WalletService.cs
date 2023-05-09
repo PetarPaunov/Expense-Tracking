@@ -41,7 +41,7 @@
             }
 
             var enumValue = Enum.GetName(typeof(Currency), userWallet.Currency);
-            var currencySymbol = GetCurrencySymbol(enumValue);
+            var currencySymbol = this.commonService.GetCurrencySymbol(enumValue);
 
             var walletInfo = new WalletInformationViewModel()
             {
@@ -55,27 +55,6 @@
 
             return walletInfo;
         }
-
-        /// <summary>
-        /// Gets the currency symbol based on the user's currency symbol
-        /// </summary>
-        /// <param name="currentCurrency">User-defined currency symbol retrieved from the database</param>
-        /// <returns>The currency symbol that will be displayed in the view</returns>
-        private static string GetCurrencySymbol(string currentCurrency)
-        {
-            var currencySymbol = "";
-
-            foreach (var currency in currencyArray)
-            {
-                if (currency.Key == currentCurrency)
-                {
-                    currencySymbol = currency.Value;
-                }
-            }
-
-            return currencySymbol;
-        }
-
 
         /// <summary>
         /// Gets all expenses and incomes of the user

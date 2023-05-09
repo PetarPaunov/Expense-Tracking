@@ -60,7 +60,6 @@
                         <tr>
                             <th scope="col">Category</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">Note</th>
                             <th scope="col">Type</th>
                         </tr>
                     </thead>
@@ -69,8 +68,7 @@
                         {
                             <tr>
                                 <th scope="row">@transaction.CategoryTitleAndIcon</th>
-                                <td>@transaction.Amount</td>
-                                <td>@transaction.Note</td>
+                                <td>@transaction.Amount @transaction.CurrencySymbol</td>
                                 <td>@transaction.Type</td>
                             </tr>
                         }

@@ -9,5 +9,6 @@
         public IEnumerable<IncomeForDay> AddZeroIncomeForThePastDays(Wallet wallet);
         public IEnumerable<ExpenseForDay> AddZeroExpenseForThePastDays(Wallet wallet);
         public int GetPastDaysOfTheMonth();
+        public string GetCurrencySymbol(string currentCurrency);
     }
 }

@@ -15,10 +15,13 @@
     public class TransactionService : ITransactionService
     {
         private readonly IGenericRepository repository;
+        private readonly ICommonService commonService;
 
-        public TransactionService(IGenericRepository repository)
+        public TransactionService(IGenericRepository repository, 
+                                  ICommonService commonService)
         {
             this.repository = repository;
+            this.commonService = commonService;
         }
 
         // Add comment
@@ -91,6 +94,17 @@
         // Add comment
         public async Task<IEnumerable<GetUserTransactionsViewModel>> GetUserTransactionsAsync(string userId)
         {
+            var userWallet = await this.repository.AllReadonly<Wallet>()
+                .FirstOrDefaultAsync(x => x.ApplicationUserId == userId);
+
+            if (userWallet == null)
+            {
+                throw new ArgumentNullException(WalletNotFoundExeption);
+            }
+
+            var enumValue = Enum.GetName(typeof(Currency), userWallet.Currency);
+            var currencySymbol = this.commonService.GetCurrencySymbol(enumValue);
+
             var userTransactions = await this.repository
                 .AllReadonly<Transaction>()
                 .Where(x => x.ApplicationUserId == userId)
@@ -101,6 +115,7 @@
                     Amount = x.Amount,
                     Note = x.Note,
                     Type = x.Type.ToString(),
+                    CurrencySymbol = currencySymbol,
                     CategoryTitleAndIcon = x.Category.Icon + " " + x.Category.Title
                 })
                 .ToListAsync();
